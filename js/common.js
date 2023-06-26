@@ -24,7 +24,6 @@ function getTime() {
 function clicklogout() {
     todoForm.classList.add('blind');
     login.classList.remove('blind');
-    localStorage.removeItem('id');
 }
 
 //login
@@ -66,11 +65,11 @@ function localStorageTodo() {
 }
 
 //todo print
-function printTodo(newTodo) {
+function printTodo(newTodo) {console.log(newTodo);
     const todoLi = document.createElement('li');
-    todoLi.id = newTodo.id
+    todoLi.id = newTodo.id;
     const todoLiSpan = document.createElement('span');
-    todoLiSpan.innerText = newTodo;
+    todoLiSpan.innerText = newTodo.text;
     const todoLiBtn = document.createElement('button');
     todoLiBtn.innerText = '삭제';
     
@@ -83,24 +82,24 @@ function printTodo(newTodo) {
 
 //todo 등록 
 function clickTodo() {
-    const dataId = Date.now();
-    const dataText = todoInput.value;
+    const todoId = Date.now();
+    const todoText = todoInput.value;
     const dataTodo = {
-        id: dataId,
-        text: dataText
+        id: todoId,
+        text: todoText
     }
     userTodoList.push(dataTodo);
     localStorage.setItem('todo', JSON.stringify(userTodoList));
     todoInput.value = '';
-    printTodo(dataText);
+    printTodo(dataTodo);
 }
 
 //todo 삭제
 function deleteTodo(event) {
     const targetId = event.target.parentNode;
     targetId.remove();
-    userTodoList = userTodoList.filter(item => console.log(item.id, parseInt(targetId.id)));
-    printTodo(userTodoList)
+    userTodoList = userTodoList.filter(item => item.id !== parseInt(targetId.id));
+    localStorage.setItem('todo', JSON.stringify(userTodoList));
 }
 
 
@@ -116,7 +115,6 @@ if (getLsLogin !== null){
 
 todoForm.addEventListener('submit', clickTodo);
 login.addEventListener('submit', clickLogin);
-logout.addEventListener('click', clicklogout);
 logout.addEventListener('click', clicklogout);
 
 getTime();

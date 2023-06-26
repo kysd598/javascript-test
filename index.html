@@ -5,34 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- 시간 -->
-    <div class="time-box">
-        <p class="in-time"></p>
-    </div>
-    <!-- 날씨 -->
-    <div class="weather-box">
-        <p class="in-time"></p>
-    </div>
     <div class="top-btn">
         <button class="btn-logout">로그아웃</button>
     </div>
-    <form action="#" id="login-form">
-        <div>
-            <p><input type="text" class="id"></p>
-            <p><input type="text" class="password"></p>
+    <div class="ui-box">
+        <div class="inner">
+            <!-- 시간 -->
+            <div class="time-box">
+                <p class="in-time"></p>
+            </div>
+            <!-- 날씨 -->
+            <div class="weather-box">
+                <p class="in-weather"></p>
+            </div>
+            <form action="#" id="login-form">
+                <div>
+                    <p><input type="text" class="id"></p>
+                    <p><input type="text" class="password"></p>
+                </div>
+                <button type="submit" class="btn-login">로그인</button>
+            </form>
+            <form action="#" id="todo-form" class="blind">
+                <p id="welcome"></p>
+                <input type="text" class="todo-input">
+                <button type="submit" class="btn-add">등록</button>
+                <div class="todo-list">
+                    <ul></ul>
+                </div>
+            </form>
         </div>
-        <button type="submit" class="btn-login">로그인</button>
-    </form>
-    <form action="#" id="todo-form" class="blind">
-        <p id="welcome"></p>
-        <input type="text" class="todo-input">
-        <button type="submit" class="btn-add">등록</button>
-        <div class="todo-list">
-            <ul></ul>
-        </div>
-    </form>
+    </div>
     <script src="./js/common.js"></script>
 </body>
 </html>

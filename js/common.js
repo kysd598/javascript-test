@@ -10,6 +10,18 @@ const todoList = todoForm.querySelector('.todo-list');
 
 let userTodoList = [];
 let userLoginList = [];
+const API_KEY = "bc6906425fb3ed21ccdee7f47316abe2";
+const imgArr = ['img1.jpg','img3.jpg','img4.jpg'];
+
+
+//이미지 램덤
+function bgImage() {
+    const radomNum = Math.floor(Math.random() * imgArr.length);
+    const imgElem = document.createElement('img');
+    imgElem.src = `img/${imgArr[radomNum]}`;
+    imgElem.classList.add('bg_img')
+    document.body.prepend(imgElem);
+}
 
 
 // 시간
@@ -19,6 +31,26 @@ function getTime() {
     const minute = date.getMinutes();
     time.innerText = `${hour}:${minute}`;
 }  
+
+// 날씨
+function successWeather(position) {
+    const lat =  position.coords.latitude;
+    const longi = position.coords.longitude;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${longi}&appid=${API_KEY}&units=metric`;
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+        });
+}
+
+function errorWeather() {
+    console.log("error");
+}
+
+function getWeather() {
+    navigator.geolocation.getCurrentPosition(successWeather, errorWeather);
+}
 
 //logout
 function clicklogout() {
@@ -65,7 +97,7 @@ function localStorageTodo() {
 }
 
 //todo print
-function printTodo(newTodo) {console.log(newTodo);
+function printTodo(newTodo) {
     const todoLi = document.createElement('li');
     todoLi.id = newTodo.id;
     const todoLiSpan = document.createElement('span');
@@ -75,7 +107,7 @@ function printTodo(newTodo) {console.log(newTodo);
     
     todoLi.appendChild(todoLiSpan);
     todoLi.appendChild(todoLiBtn);
-    todoList.appendChild(todoLi);
+    todoList.querySelector('ul').appendChild(todoLi);
     
     todoLiBtn.addEventListener('click', deleteTodo);
 }
@@ -119,3 +151,5 @@ logout.addEventListener('click', clicklogout);
 
 getTime();
 setInterval(getTime,1000);
+getWeather();
+bgImage();

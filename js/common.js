@@ -80,7 +80,7 @@ function clickLogin(event) {
 function pagelogin() {
     login.classList.add('blind');
     todoForm.classList.remove('blind');
-    localStorageTodo()
+    localStorageTodo();
 }
 
 
@@ -120,6 +120,9 @@ function clickTodo() {
     const dataTodo = {
         id: todoId,
         text: todoText
+    }
+    if(!todoText) {
+        alert("오늘 할일을 입력해주세요!");
     }
     userTodoList.push(dataTodo);
     localStorage.setItem('todo', JSON.stringify(userTodoList));

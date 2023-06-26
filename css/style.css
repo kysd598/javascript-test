@@ -59,6 +59,11 @@ input {
     padding: 16px;
     font-size: 24px;
     box-sizing: border-box;
+    border:1px solid #ddd;
+}
+
+input::placeholder {
+    font-size: 18px;
 }
 
 .blind {
@@ -73,7 +78,6 @@ input {
     bottom: 0;
     width: 100%;
     height: auto;
-    background-size: contain;
     z-index: 0;
 }
 

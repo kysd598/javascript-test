@@ -103,7 +103,7 @@ function printTodo(newTodo) {
     const todoLiSpan = document.createElement('span');
     todoLiSpan.innerText = newTodo.text;
     const todoLiBtn = document.createElement('button');
-    todoLiBtn.innerText = '삭제';
+    todoLiBtn.innerText = '완료😍';
     todoLiBtn.classList.add('btn-delete');
     
     todoLi.appendChild(todoLiSpan);

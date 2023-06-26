@@ -55,6 +55,7 @@ function getWeather() {
 //logout
 function clicklogout() {
     todoForm.classList.add('blind');
+    logout.classList.add('blind');
     login.classList.remove('blind');
 }
 
@@ -79,6 +80,7 @@ function clickLogin(event) {
 //login page
 function pagelogin() {
     login.classList.add('blind');
+    logout.classList.remove('blind');
     todoForm.classList.remove('blind');
     localStorageTodo();
 }

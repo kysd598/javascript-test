@@ -77,8 +77,10 @@ input::placeholder {
     right: 0;
     bottom: 0;
     width: 100%;
-    height: auto;
+    height: 100vh;
     z-index: 0;
+    background-size: cover;
+    background-position: top center;
 }
 
 .btn-logout {
@@ -170,3 +172,11 @@ input::placeholder {
     border-radius: 20px;
 }
 
+.weather-box {
+
+}
+
+.weather-box .in-weather {
+    margin-bottom: 10px;
+    font-size: 18px;
+}

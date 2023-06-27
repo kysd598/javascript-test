@@ -7,6 +7,7 @@ const welcome = document.querySelector('#welcome');
 const todoForm = document.querySelector('#todo-form');
 const todoInput = todoForm.querySelector('.todo-input');
 const todoList = todoForm.querySelector('.todo-list');
+const weather = document.querySelector('.weather-box .in-weather');
 
 let userTodoList = [];
 let userLoginList = [];
@@ -18,7 +19,8 @@ const imgArr = ['img1.jpg','img3.jpg','img4.jpg'];
 function bgImage() {
     const radomNum = Math.floor(Math.random() * imgArr.length);
     const imgElem = document.createElement('img');
-    imgElem.src = `img/${imgArr[radomNum]}`;
+    // imgElem.src = `img/${imgArr[radomNum]}`;
+    imgElem.style.backgroundImage  = `url(./img/${imgArr[radomNum]})`;
     imgElem.classList.add('bg_img')
     document.body.prepend(imgElem);
 }
@@ -40,7 +42,9 @@ function successWeather(position) {
     fetch(url)
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
+            weather.innerText = `${data.name} ${Math.floor(data.main.temp)}° ${data.weather[0].main}`;
+            console.log(data.main.temp);
+            console.log(data.weather[0].main);
         });
 }
 

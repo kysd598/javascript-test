@@ -177,6 +177,7 @@ input::placeholder {
 }
 
 .weather-box .in-weather {
-    margin-bottom: 10px;
+    margin-bottom: 16px;
     font-size: 18px;
+    color: #666;
 }

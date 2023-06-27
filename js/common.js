@@ -129,6 +129,7 @@ function clickTodo() {
     }
     if(!todoText) {
         alert("오늘 할일을 입력해주세요!");
+        return false
     }
     userTodoList.push(dataTodo);
     localStorage.setItem('todo', JSON.stringify(userTodoList));

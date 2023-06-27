@@ -91,6 +91,7 @@ input::placeholder {
     right: 30px;
     top: 30px;
     background-color: transparent;
+    cursor: pointer;
 }
 .btn-login  {
     width: 100%;

@@ -154,8 +154,6 @@ if (getLsLogin !== null){
     pagelogin();
 }
 
-
-
 todoForm.addEventListener('submit', clickTodo);
 login.addEventListener('submit', clickLogin);
 logout.addEventListener('click', clicklogout);

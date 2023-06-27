@@ -43,8 +43,6 @@ function successWeather(position) {
         .then((response) => response.json())
         .then((data) => {
             weather.innerText = `${data.name} ${Math.floor(data.main.temp)}° ${data.weather[0].main}`;
-            console.log(data.main.temp);
-            console.log(data.weather[0].main);
         });
 }
 
@@ -61,6 +59,7 @@ function clicklogout() {
     todoForm.classList.add('blind');
     logout.classList.add('blind');
     login.classList.remove('blind');
+    localStorage.removeItem('login');
 }
 
 //login
@@ -68,6 +67,18 @@ function clickLogin(event) {
     event.preventDefault();
     let userId = id.value;
     let userPassword = password.value;
+
+    if(!userId) {
+        alert("아이디를 입력해주세요!");
+        id.focus();
+        return false;
+    }
+    if(!userPassword) {
+        alert("비밀번호를 입력해주세요!");
+        password.focus();
+        return false;
+    }
+
     const dataLogin = {
         id: userId,
         password: userPassword
@@ -93,17 +104,15 @@ function pagelogin() {
 //localStorage todo list
 function localStorageTodo() {
     const getLsTodo = localStorage.getItem('todo');
+    console.log(getLsTodo);
     if(getLsTodo !== null){
         const paseTodo = JSON.parse(getLsTodo);
         userTodoList = paseTodo;
-        paseTodo.forEach(item => {
-            printTodo(item);
-        });
     }
 }
 
 //todo print
-function printTodo(newTodo) {
+function printTodo(newTodo) {console.log(newTodo.text);
     const todoLi = document.createElement('li');
     todoLi.id = newTodo.id;
     const todoLiSpan = document.createElement('span');
@@ -123,14 +132,18 @@ function printTodo(newTodo) {
 function clickTodo() {
     const todoId = Date.now();
     const todoText = todoInput.value;
+    
+    if(!todoText) {
+        alert("오늘 할일을 입력해주세요!");
+        todoInput.focus();
+        return false;
+    }
+    
     const dataTodo = {
         id: todoId,
         text: todoText
     }
-    if(!todoText) {
-        alert("오늘 할일을 입력해주세요!");
-        return false
-    }
+
     userTodoList.push(dataTodo);
     localStorage.setItem('todo', JSON.stringify(userTodoList));
     todoInput.value = '';
@@ -148,11 +161,20 @@ function deleteTodo(event) {
 
 //localStorage
 const getLsLogin = localStorage.getItem('login');
+const getLsTodo = localStorage.getItem('todo');
 
 if (getLsLogin !== null){
     const paseLsLogin = JSON.parse(getLsLogin);
     pagelogin();
 }
+if (getLsTodo !== null){
+    const paseLsTodo = JSON.parse(getLsTodo);
+    paseLsTodo.forEach(item => {
+        printTodo(item);
+    });
+}
+
+
 
 todoForm.addEventListener('submit', clickTodo);
 login.addEventListener('submit', clickLogin);

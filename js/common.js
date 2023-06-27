@@ -158,7 +158,6 @@ function deleteTodo(event) {
     localStorage.setItem('todo', JSON.stringify(userTodoList));
 }
 
-
 //localStorage
 const getLsLogin = localStorage.getItem('login');
 const getLsTodo = localStorage.getItem('todo');
